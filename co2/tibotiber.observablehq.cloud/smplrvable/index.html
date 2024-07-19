@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<!-- Mirrored from tibotiber.observablehq.cloud/smplrvable/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jul 2024 15:06:30 GMT -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Interior carbon dioxide readings | Smplrvable</title>
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="_observablehq/theme-air%2cnear-midnight%2cwide.css">
+<link rel="preload" as="style" href="_observablehq/stdlib/inputs.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="_observablehq/theme-air%2cnear-midnight%2cwide.css">
+<link rel="stylesheet" type="text/css" href="_observablehq/stdlib/inputs.css">
+<link rel="modulepreload" href="_observablehq/client.js">
+<link rel="modulepreload" href="_observablehq/runtime.js">
+<link rel="modulepreload" href="_observablehq/stdlib.js">
+<link rel="modulepreload" href="_import/data/sensors.fd746609.js">
+<link rel="modulepreload" href="_import/data/co2.67289546.js">
+<link rel="modulepreload" href="_node/%40mobily/ts-belt%403.13.1/index.js">
+<link rel="modulepreload" href="_node/%40smplrspace/smplr-loader%402.16.1/index.js">
+<link rel="modulepreload" href="_npm/d3%407.9.0/_esm.js">
+<link rel="modulepreload" href="_observablehq/stdlib/inputs.js">
+<link rel="modulepreload" href="_npm/%40observablehq/plot%400.6.14/_esm.js">
+<link rel="modulepreload" href="_npm/htl%400.3.1/_esm.js">
+<link rel="modulepreload" href="_npm/isoformat%400.2.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-array%403.2.4/_esm.js">
+<link rel="modulepreload" href="_npm/d3-axis%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-brush%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-chord%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-color%403.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-contour%404.0.2/_esm.js">
+<link rel="modulepreload" href="_npm/d3-delaunay%406.0.4/_esm.js">
+<link rel="modulepreload" href="_npm/d3-dispatch%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-drag%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-dsv%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-ease%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-fetch%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-force%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-format%403.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-geo%403.1.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-hierarchy%403.1.2/_esm.js">
+<link rel="modulepreload" href="_npm/d3-interpolate%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-path%403.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-polygon%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-quadtree%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-random%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-scale%404.0.2/_esm.js">
+<link rel="modulepreload" href="_npm/d3-scale-chromatic%403.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-selection%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-shape%403.2.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-time%403.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-time-format%404.1.0/_esm.js">
+<link rel="modulepreload" href="_npm/d3-timer%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-transition%403.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/d3-zoom%403.0.0/_esm.js">
+<link rel="modulepreload" href="_npm/interval-tree-1d%401.0.4/_esm.js">
+<link rel="modulepreload" href="_npm/internmap%402.0.3/_esm.js">
+<link rel="modulepreload" href="_npm/delaunator%405.0.1/_esm.js">
+<link rel="modulepreload" href="_npm/binary-search-bounds%402.0.5/_esm.js">
+<link rel="modulepreload" href="_npm/robust-predicates%403.0.2/_esm.js">
+<link rel="icon" href="_file/img/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.js";
+
+define({id: "a1d81ad3", outputs: ["sensors","co2Data","pipe","A","D","G","loadSmplrJs","smplr"], body: async () => {
+const [{sensors}, {co2Data}, {pipe, A, D}, {G}, {loadSmplrJs}] = await Promise.all([import("_import/data/sensors.fd746609.js"), import("_import/data/co2.67289546.js"), import("./_node/@mobily/ts-belt@3.13.1/index.js"), import("./_node/@mobily/ts-belt@3.13.1/index.js"), import("./_node/@smplrspace/smplr-loader@2.16.1/index.js")]);
+
+const smplr = await loadSmplrJs("esm", "dev");
+return {sensors,co2Data,pipe,A,D,G,loadSmplrJs,smplr};
+}});
+
+define({id: "94b1dc65", inputs: ["sensorDataFiltered","sensors","G"], outputs: ["mappedCo2Data"], body: (sensorDataFiltered,sensors,G) => {
+const mappedCo2Data = sensorDataFiltered
+  .map((d) => {
+    const sensor = sensors.find((s) => s.id === d.uuid);
+    if (!sensor) {
+      return null;
+    }
+    return { ...d, position: sensor.position };
+  })
+  .filter((d) => G.isNotNullable(d));
+return {mappedCo2Data};
+}});
+
+define({id: "34625768", inputs: ["Inputs","Generators"], outputs: ["styleInput","style","gridFillInput","gridFill","elevationInput","elevation"], body: (Inputs,Generators) => {
+// Inputs (for choosing smplrspace heatmap styling)
+const styleInput = Inputs.radio(["bar-chart", "grid", "spheres"], {
+  label: "Heatmap style",
+  value: "bar-chart",
+});
+
+const style = Generators.input(styleInput);
+
+const gridFillInput = Inputs.range([0.5, 1.5], {
+  label: "Fill factor",
+  step: 0.1,
+});
+const gridFill = Generators.input(gridFillInput);
+
+const elevationInput = Inputs.range([0, 3], {
+  label: "Elevation (grid & sphere)",
+  step: 0.25,
+  value: 2.75,
+});
+
+const elevation = Generators.input(elevationInput);
+return {styleInput,style,gridFillInput,gridFill,elevationInput,elevation};
+}});
+
+define({id: "cfc45c2b", inline: true, inputs: ["timeSlider","display"], body: async (timeSlider,display) => {
+display(await(
+new Date(timeSlider).toUTCString()
+))
+}});
+
+define({id: "c3a49d0c", inline: true, inputs: ["timeSliderInput","display"], body: async (timeSliderInput,display) => {
+display(await(
+timeSliderInput
+))
+}});
+
+define({id: "3edecc53", inputs: ["smplr"], outputs: ["space","viewerReady"], body: async (smplr) => {
+const space = new smplr.Space({
+  spaceId: "775d15d1-f26c-4e02-aa60-4a3a2a1bd785",
+  clientToken: "pub_8c31c16e36804afe832b392f6e0d7843",
+  containerId: "smplr-container",
+});
+
+const viewerReady = await space.startViewer({
+  preview: false,
+  allowModeChange: true,
+  renderOptions: {
+    backgroundColor: "gainsboro",
+  },
+  onError: (error) => console.error("Could not start viewer", error),
+});
+return {space,viewerReady};
+}});
+
+define({id: "19483b5f", inputs: ["space","style","mappedCo2Data","smplr","gridFill","elevation"], outputs: ["smplrspaceHeatmap"], body: (space,style,mappedCo2Data,smplr,gridFill,elevation) => {
+const smplrspaceHeatmap = space.addDataLayer({
+  id: "hm",
+  type: "heatmap",
+  style,
+  data: mappedCo2Data,
+  value: (d) => d.value,
+  color: smplr.Color.numericScale({
+    name: smplr.Color.NumericScale.RdYlGn,
+    domain: [400, 800],
+    invert: true,
+  }),
+  height: (v) => (v - 400) / 150,
+  confidenceRadius: 9,
+  gridSize: 0.6,
+  gridFill,
+  elevation,
+});
+return {smplrspaceHeatmap};
+}});
+
+define({id: "7a8d11f4", inline: true, inputs: ["resize","testHorizon","display"], body: async (resize,testHorizon,display) => {
+display(await(
+resize((width, height) => testHorizon(width, height))
+))
+}});
+
+define({id: "f8ccac52", inline: true, inputs: ["d3","maxValue","display"], body: async (d3,maxValue,display) => {
+display(await(
+d3.format(",")(maxValue.value) + " ppm"
+))
+}});
+
+define({id: "e18d6354", inline: true, inputs: ["sensorsMaxValue","maxValue","display"], body: async (sensorsMaxValue,maxValue,display) => {
+display(await(
+"Sensor: " + sensorsMaxValue[0] + " at " + new Date(maxValue.dateNew).toUTCString()
+))
+}});
+
+define({id: "66792c13", inline: true, inputs: ["minValue","display"], body: async (minValue,display) => {
+display(await(
+"Minimum concentration:", minValue.value + " ppm"
+))
+}});
+
+define({id: "b218a2df", inline: true, inputs: ["d3","sensorsMinValue","uniqueSensorsMinValue","display"], body: async (d3,sensorsMinValue,uniqueSensorsMinValue,display) => {
+display(await(
+"Recorded " + d3.format(",")(sensorsMinValue.length) + " total times by " + uniqueSensorsMinValue + " different sensors"
+))
+}});
+
+define({id: "a225997f", inline: true, inputs: ["styleInput","display"], body: async (styleInput,display) => {
+display(await(
+styleInput
+))
+}});
+
+define({id: "dd71ac03", inline: true, inputs: ["gridFillInput","display"], body: async (gridFillInput,display) => {
+display(await(
+gridFillInput
+))
+}});
+
+define({id: "d3c728e3", inline: true, inputs: ["elevationInput","display"], body: async (elevationInput,display) => {
+display(await(
+elevationInput
+))
+}});
+
+define({id: "84807187", inline: true, inputs: ["smplrspaceHeatmap","display"], body: async (smplrspaceHeatmap,display) => {
+display(await(
+smplrspaceHeatmap
+))
+}});
+
+define({id: "a94e1e34", inline: true, inputs: ["resize","co2Histogram","display"], body: async (resize,co2Histogram,display) => {
+display(await(
+resize((width, height) => co2Histogram(width, height))
+))
+}});
+
+define({id: "24193290", inline: true, inputs: ["search","display"], body: async (search,display) => {
+display(await(
+search
+))
+}});
+
+define({id: "67b0861d", inline: true, inputs: ["Inputs","searchValue","display"], body: async (Inputs,searchValue,display) => {
+display(await(
+Inputs.table(searchValue, {columns: ["dateNew", "uuid", "value"], header: {dateNew: "Time", uuid: "Sensor ID", value: "CO2 concentration (ppm)"}})
+))
+}});
+
+define({id: "52248016", inputs: ["co2Data","d3"], outputs: ["sensorDataClean"], body: (co2Data,d3) => {
+const sensorDataClean = co2Data.map((d) => ({
+  ...d,
+  dateNew: d3.utcParse("%Y-%m-%dT%H:%M:%SZ")(d.ts),
+}));
+return {sensorDataClean};
+}});
+
+define({id: "b0e0938c", inputs: ["d3","timeSlider","sensorDataClean"], outputs: ["timeSliderDateTime","sensorDataFiltered","maxValue","sensorsMaxValue","uniqueSensorsMaxValue","minValue","sensorsMinValue","uniqueSensorsMinValue"], body: (d3,timeSlider,sensorDataClean) => {
+// Filter sensor data to only match slider time
+const timeSliderDateTime = d3.utcParse("%a, %d %b %Y %H:%M:%S GMT")(
+  new Date(timeSlider).toUTCString()
+);
+
+const sensorDataFiltered = sensorDataClean.filter(
+  (d) =>
+    new Date(d.dateNew).toUTCString() ==
+    new Date(timeSliderDateTime).toUTCString()
+);
+
+// Get object with maximum recorded value
+const maxValue = sensorDataClean.reduce((max, val) =>
+  max.value > val.value ? max : val
+);
+
+const sensorsMaxValue = sensorDataClean
+  .filter((d) => d.value == maxValue.value)
+  .map((d) => d.uuid);
+
+const uniqueSensorsMaxValue = new Set(sensorsMaxValue).size;
+
+// Get object with minimum recorded value
+const minValue = sensorDataClean.reduce((min, val) =>
+  min.value < val.value ? min : val
+);
+
+const sensorsMinValue = sensorDataClean
+  .filter((d) => d.value == minValue.value)
+  .map((d) => d.uuid);
+
+const uniqueSensorsMinValue = new Set(sensorsMinValue).size;
+return {timeSliderDateTime,sensorDataFiltered,maxValue,sensorsMaxValue,uniqueSensorsMaxValue,minValue,sensorsMinValue,uniqueSensorsMinValue};
+}});
+
+define({id: "79683297", inputs: ["Inputs","d3","sensorDataClean","Generators"], outputs: ["timeSliderInput","timeSlider"], body: (Inputs,d3,sensorDataClean,Generators) => {
+const timeSliderInput = Inputs.range(
+  d3.extent(sensorDataClean.map((d) => d.dateNew)),
+  { step: 600000 }
+);
+
+const timeSlider = Generators.input(timeSliderInput);
+
+timeSliderInput.querySelector("input[type=number]").remove();
+return {timeSliderInput,timeSlider};
+}});
+
+define({id: "550dd715", inputs: ["d3","sensorDataClean","Plot","timeSlider"], outputs: ["bands","step","testHorizon"], body: (d3,sensorDataClean,Plot,timeSlider) => {
+const bands = 7;
+
+console.log(d3.max(sensorDataClean, (d) => d.value));
+
+const step = +(d3.max(sensorDataClean, (d) => d.value) / bands).toPrecision(2);
+
+function testHorizon(width, height) {
+  return Plot.plot({
+    height: height,
+    width,
+    marginLeft: 100,
+    marginRight: 0,
+    marginTop: 30,
+    x: { axis: "top", label: null },
+    y: { domain: [0, step], axis: null },
+    color: { scheme: "Greys" },
+    marks: [
+      d3.range(bands).map((band) =>
+        Plot.areaY(sensorDataClean, {
+          x: "dateNew",
+          y: (d) => d.value - band * step,
+          fy: "uuid",
+          fill: band,
+          opacity: 0.85,
+          sort: "dateNew",
+          clip: true,
+        })
+      ),
+      Plot.ruleX(
+        [
+          d3.utcParse("%a, %d %b %Y %H:%M:%S GMT")(
+            new Date(timeSlider).toUTCString()
+          ),
+        ],
+        { stroke: "black" }
+      ),
+      Plot.axisFy({
+        frameAnchor: "left",
+        dx: -100,
+        dy: 0,
+        label: null,
+        fontSize: 12,
+        fontWeight: 400,
+      }),
+    ],
+  });
+}
+return {bands,step,testHorizon};
+}});
+
+define({id: "29bbc444", outputs: ["breakpoints","screenSize"], body: () => {
+const breakpoints = [600, 1000];
+const screenSize =
+  window.innerWidth < breakpoints[0]
+    ? 0
+    : window.innerWidth < breakpoints[1]
+    ? 1
+    : 2;
+return {breakpoints,screenSize};
+}});
+
+define({id: "06953060", inputs: ["Plot","sensorDataClean","co2ColorScale"], outputs: ["co2Histogram"], body: (Plot,sensorDataClean,co2ColorScale) => {
+function co2Histogram(width, height) {
+  return Plot.plot({
+    y: { type: "sqrt", grid: true, domain: [0, 3000] },
+    x: { label: "CO2 concentration (ppm)" },
+    width,
+    height: height - 20,
+    marginBottom: 40,
+    marginTop: 40,
+    marks: [
+      Plot.rectY(
+        sensorDataClean,
+        Plot.binX(
+          { y: "count" },
+          {
+            x: "value",
+            opacity: 0.95,
+            fill: (d) => {
+              // same value for whole bar width (20)
+              const normalizedValue = Math.floor(d.value / 20) * 20;
+              return co2ColorScale(normalizedValue);
+            },
+          }
+        )
+      ),
+    ],
+  });
+}
+return {co2Histogram};
+}});
+
+define({id: "c19ff971", inputs: ["smplr"], outputs: ["co2ColorScale"], body: (smplr) => {
+const co2ColorScale = (value) =>
+  smplr.Color.cssToSmplrColor(
+    smplr.Color.numericScale({
+      name: smplr.Color.NumericScale.RdYlGn,
+      domain: [400, 800],
+      invert: true,
+    })(value)
+  );
+return {co2ColorScale};
+}});
+
+define({id: "a7ddde80", inputs: ["Inputs","sensorDataClean","Generators"], outputs: ["search","searchValue"], body: (Inputs,sensorDataClean,Generators) => {
+// search Input
+const search = Inputs.search(sensorDataClean, {
+  placeholder: "Search sensor data…",
+});
+
+const searchValue = Generators.input(search);
+return {search,searchValue};
+}});
+
+</script>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<h1 id="interior-carbon-dioxide-readings" tabindex="-1"><a class="observablehq-header-anchor" href="#interior-carbon-dioxide-readings">Interior carbon dioxide readings</a></h1>
+<h2 id="smplrspace-and-observable-framework" tabindex="-1"><a class="observablehq-header-anchor" href="#smplrspace-and-observable-framework">Smplrspace and Observable Framework</a></h2>
+<div id="cell-a1d81ad3" class="observablehq observablehq--block"></div>
+<div id="cell-94b1dc65" class="observablehq observablehq--block"></div>
+<div id="cell-34625768" class="observablehq observablehq--block"></div>
+<h2 id="" tabindex="-1"><a class="observablehq-header-anchor" href="#"><span id="cell-cfc45c2b" class="observablehq--loading"></span> <!-- TODO update to match TZ --></a></h2>
+<p><span id="cell-c3a49d0c" class="observablehq--loading"></span></p>
+<div id="cell-3edecc53" class="observablehq observablehq--block"></div>
+<div id="cell-19483b5f" class="observablehq observablehq--block"></div>
+<div class="grid grid-cols-3 grid-rows-4" style="grid-auto-rows: auto;">
+  <div class="card grid-colspan-1 grid-rowspan-4" style="height: 700px">
+    <h2>Carbon dioxide sensor readings (ppm)</h2>
+    <span id="cell-7a8d11f4" class="observablehq--loading"></span>
+  </div>
+  <div class="card grid-rowspan-1 grid-colspan-1">
+    <h2>Peak concentration: </h2>
+    <span class="big"><span id="cell-f8ccac52" class="observablehq--loading"></span></span>
+    <br><br>
+    <h3><span id="cell-e18d6354" class="observablehq--loading"></span></h3>
+  </div>
+  <div class="card grid-rowspan-1 grid-colspan-1">
+    <h2>Minimum concentration: </h2>
+    <span class="big"><span id="cell-66792c13" class="observablehq--loading"></span></span>
+    <br><br>
+    <h3><span id="cell-b218a2df" class="observablehq--loading"></span></h3>
+  </div>
+  <div class="grid-colspan-2 grid-rowspan-3 card">
+    <span id="cell-a225997f" class="observablehq--loading"></span>
+    <span id="cell-dd71ac03" class="observablehq--loading"></span>
+    <span id="cell-d3c728e3" class="observablehq--loading"></span>
+    <div id="smplr-container" style="height: 450px">
+      <span id="cell-84807187" class="observablehq--loading"></span>
+    </div>
+  </div>
+</div>
+<div class="grid grid-cols-2" "="">
+  <div class="card grid-colspan-1" style="height: 300px">
+    <h2>Distribution of CO<sub>2</sub> readings for this space</h2>
+    <span id="cell-a94e1e34" class="observablehq--loading"></span>
+  </div>
+  <div class="card grid-colspan-1">
+    <span id="cell-24193290" class="observablehq--loading"></span>
+    <span id="cell-67b0861d" class="observablehq--loading"></span>
+   </div>
+ </div>
+<div id="cell-52248016" class="observablehq observablehq--block"></div>
+<div id="cell-b0e0938c" class="observablehq observablehq--block"></div>
+<div id="cell-79683297" class="observablehq observablehq--block"></div>
+<div id="cell-550dd715" class="observablehq observablehq--block"></div>
+<div id="cell-29bbc444" class="observablehq observablehq--block"></div>
+<div id="cell-06953060" class="observablehq observablehq--block"></div>
+<div id="cell-c19ff971" class="observablehq observablehq--block"></div>
+<div id="cell-a7ddde80" class="observablehq observablehq--block"></div>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2024-05-17T16:41:52">May 17, 2024</a>.</div>
+</footer>
+</div>
+
+    <script type="module" async src="../../static.observableusercontent.com/next/project-latest.js"></script>
+  
